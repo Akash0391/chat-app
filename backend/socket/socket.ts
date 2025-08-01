@@ -14,38 +14,36 @@ export function initializeSocket(server: any): SocketIOServer {
 
     //middleware to authenticate the socket
     io.use((socket: Socket, next) => {
-        const token = socket.handshake.query.token;
+        const token = socket.handshake.auth.token;
         if(!token) {
             return next(new Error("Authentication error"));
         }
-        //verify the token
-        jwt.verify(token as string, process.env.JWT_SECRET as string, (err: any, decoded: any) => {
-            if(err) {
-                return next(new Error("invalid token"));
-            }
-            //attach user to socket data    
-            let userData = decoded.user;
-            socket.data = userData;
-            socket.data.userId = userData.id;
-            next();
-        });
-    })
+                //verify the token
+                jwt.verify(token as string, process.env.JWT_SECRET as string, (err: any, decoded: any) => {
+                    if(err) {
+                        return next(new Error("invalid token"));
+                    }
+                    //attach user to socket data   
+                    socket.data.userId = decoded.id;
+                    next();
+                });
+            })
 
-    //when a socket connects ,register the user events
+            //when a socket connects ,register the user events
 
-    io.on("connection", async (socket: Socket) => {
-        const userId = socket.data.userId;
-        console.log("A user connected", userId);
+            io.on("connection", async (socket: Socket) => {
+                const userId = socket.data.userId;
+                console.log("A user connected", userId);
 
-        //register the user events
-        userEvents(io, socket); 
+                //register the user events
+                userEvents(io, socket); 
 
-        //send welcome message
-        socket.emit("welcome", "Welcome to the chat");
-        socket.on("disconnect", () => {
-            console.log("A user disconnected");
-        });
-    });
+                //send welcome message
+                socket.emit("welcome", "Welcome to the chat");
+                socket.on("disconnect", () => {
+                    console.log("A user disconnected");
+                });
+            }); 
 
-    return io;
-}
+            return io;
+        }

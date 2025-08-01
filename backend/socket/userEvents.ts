@@ -6,5 +6,5 @@ export const userEvents = (io: SocketIOServer, socket: Socket) => {
             message: "You have joined the room",
             roomId: data.roomId,
         });
-    });
+    }); 
 };

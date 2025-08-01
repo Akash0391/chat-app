@@ -16,10 +16,10 @@ export async function connectSocket(): Promise<Socket> {
         });
 
         //wait for the socket to connect
-        await new Promise((resolve) => {
+        await new Promise((resolve) => {    
             socket?.on("connect", () => {
-                console.log("Socket connected", socket?.id);
-                resolve(true);
+                console.log("Socket connected", socket?.id);    
+                resolve(true);  
             });
         }); 
 
