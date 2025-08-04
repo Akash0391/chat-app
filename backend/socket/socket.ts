@@ -24,7 +24,7 @@ export function initializeSocket(server: any): SocketIOServer {
                         return next(new Error("invalid token"));
                     }
                     //attach user to socket data   
-                    socket.data.userId = decoded.id;
+                    socket.data.userId = decoded.user.id;
                     next();
                 });
             })

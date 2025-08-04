@@ -11,7 +11,9 @@ const RootLayout = () => {
 }
 const StackLayout = () => {
   return (
-    <Stack screenOptions={{ headerShown: false }}/>
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="(main)/profileModal" options={{ presentation: 'modal' }}/>
+    </Stack>
   )
 }
 

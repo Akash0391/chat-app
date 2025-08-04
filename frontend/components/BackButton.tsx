@@ -1,6 +1,6 @@
 import { StyleSheet, TouchableOpacity } from 'react-native'                         
 import React from 'react'
-import { colors } from '@/constants/theme'  
+import { colors } from '@/constants/theme'    
 import { BackButtonProps } from '@/types'
 import { useRouter } from 'expo-router'
 import { CaretLeft } from 'phosphor-react-native'
@@ -32,7 +32,5 @@ const BackButton = ({
 export default BackButton
 
 const styles = StyleSheet.create({
-    button: {
-        
-    },
+   button: {},
 })

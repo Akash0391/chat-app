@@ -18,27 +18,40 @@ const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { signUp, checkEmailExists } = useAuth();
+  const { signUp } = useAuth(); 
 
   const handleSubmit = async () => {
-    if(!email || !password || !name) {  
+    if (!email || !password || !name) {
+      console.log("Missing fields:", { email, password, name });
       Alert.alert("Register", "Please fill in all fields");
-      return; 
+      return;
     }
+  
     try {
+      console.log("Attempting registration with:", { name, email, password });
+  
       setIsLoading(true);
-      const emailExists = await checkEmailExists(email);
-      if(emailExists) {
-        Alert.alert("Register", "Email already exists");
-        return;
+      
+      await signUp(email.toLowerCase().trim(), password, name.trim(), ""); // normalize input
+  
+      console.log("Registration successful");
+    } catch (error: any) {
+      console.log("Registration error:", error);
+  
+      if (error.response) {
+        console.log("Server responded with:", error.response.status, error.response.data);
+        Alert.alert("Register Error", error.response.data.message || "Something went wrong.");
+      } else if (error.message) {
+        console.log("Error message:", error.message);
+        Alert.alert("Register Error", error.message);
+      } else {
+        Alert.alert("Register Error", "Unexpected error occurred.");
       }
-      await signUp(email, password, name, "");
-    } catch (error: any) {  
-      Alert.alert("Register Error", error.response.data.message);
     } finally {
       setIsLoading(false);
     }
   };
+  
   return (
     <KeyboardAvoidingView style={{flex: 1}} behavior={Platform.OS === "android" ? "height" : "padding"}>
       <ScreenWrapper showPattern={true}>

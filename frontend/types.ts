@@ -19,7 +19,7 @@ export type TypoProps = {
 };
 
 export interface UserProps {
-  email: string;
+  email: string;  
   name: string;
   avatar?: string | null;
   id?: string;
@@ -58,7 +58,7 @@ export type AuthContextProps = {
   ) => Promise<void>;
   signOut: () => Promise<void>;
   updateToken: (token: string) => Promise<void>;
-  checkEmailExists: (email: string) => Promise<boolean>;
+  // checkEmailExists: (email: string) => Promise<boolean>;
 };
 
 export type ScreenWrapperProps = {

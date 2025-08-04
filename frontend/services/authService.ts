@@ -24,13 +24,13 @@ export const register = async (email: string, password: string, name: string, av
     }
 }
 
-export const checkEmail = async (email: string): Promise<{ exists: boolean }> => {
-    try {
-        const response = await axios.post(`${BASE_URL}/api/auth/check-email`, { email });
-        return response.data;
-    } catch (error: any) {
-        console.error(error);
-        const msg = error?.response?.data?.msg || "Email check failed";
-        throw new Error(msg);
-    }
-}
+// export const checkEmail = async (email: string): Promise<{ exists: boolean }> => {
+//     try {
+//         const response = await axios.post(`${BASE_URL}/api/auth/check-email`, { email });
+//         return response.data;    
+//     } catch (error: any) {
+//         console.error(error);
+//         const msg = error?.response?.data?.msg || "Email check failed";
+//         throw new Error(msg);
+//     }
+// }

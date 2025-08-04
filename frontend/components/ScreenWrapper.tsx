@@ -1,12 +1,12 @@
 import { ScreenWrapperProps } from '@/types'
-import { View, Text, Platform, StatusBar, Dimensions, ImageBackground } from 'react-native'
+import { View, Platform, StatusBar, Dimensions, ImageBackground } from 'react-native'   
 import React from 'react'
 import { colors } from '@/constants/theme';
-
+  
 const { height } = Dimensions.get("window");
 const ScreenWrapper = ({
     children,
-    style,
+    style,  
     showPattern = true,
     isModal = false,
     bgOpacity = 1,
@@ -16,7 +16,7 @@ const ScreenWrapper = ({
     let paddingBottom = 0;
 
     if(isModal) {
-        paddingTop = Platform.OS === "android" ? height * 0.02 : 0.04;
+        paddingTop = Platform.OS === "android" ? height * 0.02 : 0.04;  
         paddingBottom = height * 0.04;
     }
 
@@ -25,7 +25,7 @@ const ScreenWrapper = ({
         style={[
         {
         flex: 1,
-        backgroundColor: isModal ? colors.white : colors.neutral900,
+        backgroundColor: isModal ? colors.white : colors.neutral900,  
     }, style]}
     imageStyle={
         showPattern ? {

@@ -8,6 +8,7 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
     try {
         const existingUser = await User.findOne({ email });
         if (existingUser) {
+            console.log("User already exists");
             res.status(400).json({ message: "User already exists" });
             return;
         }
@@ -52,12 +53,12 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
     }
 }
 
-export const checkEmail = async (req: Request, res: Response): Promise<void> => {
-    const { email } = req.body;
-    try {
-        const user = await User.findOne({ email });
-        res.status(200).json({ exists: !!user });
-    } catch (error) {
-        res.status(500).json({ message: "server error", error });
-    }
-}
+// export const checkEmail = async (req: Request, res: Response): Promise<void> => {
+//     const { email } = req.body;
+//     try {
+//         const user = await User.findOne({ email });
+//         res.status(200).json({ exists: !!user });
+//     } catch (error) {
+//         res.status(500).json({ message: "server error", error });
+//     }
+// }

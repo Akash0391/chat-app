@@ -1,4 +1,4 @@
-import { checkEmail, login, register } from "@/services/authService";
+import { login, register } from "@/services/authService";
 import { AuthContextProps, DecodedTokenProps, UserProps } from "@/types";
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { useRouter } from "expo-router";
@@ -13,7 +13,7 @@ export const AuthContext = createContext<AuthContextProps>({
   signUp: async () => {}, //register
   signOut: async () => {}, //logout
   updateToken: async () => {}, //update token
-  checkEmailExists: async () => false, //check email  
+  //checkEmailExists: async () => false, //check email  
 });
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const storedToken = await AsyncStorage.getItem("token");
     if (storedToken) {
       try {
-        const decoded = jwtDecode<DecodedTokenProps>(storedToken);
+        const decoded = jwtDecode<DecodedTokenProps>(storedToken)
         if(decoded.exp && decoded.exp < Date.now() / 1000) {
           await AsyncStorage.removeItem("token");
           gotoWelcomePage();
@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         }
         setToken(storedToken);
         await connectSocket();  
-        setUser(decoded.user);
+        setUser(decoded.user);    
         gotoHomePage();
       } catch (error) {
         gotoWelcomePage();
@@ -98,19 +98,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     router.replace("/(auth)/welcome");
   };
 
-  const checkEmailExists = async (email: string): Promise<boolean> => {
-    try {
-      const response = await checkEmail(email);
-      return response.exists;
-    } catch (error) {
-      console.error(error);
-      return false;
-    }
-  };
+  // const checkEmailExists = async (email: string): Promise<boolean> => {
+  //   try {
+  //     const response = await checkEmail(email);
+  //     return response.exists;
+  //   } catch (error) {
+  //     console.error(error);
+  //     return false;
+  //   }
+  // };
 
   return (
     <AuthContext.Provider
-      value={{ token, user, signIn, signUp, signOut, updateToken, checkEmailExists }}
+        value={{ token, user, signIn, signUp, signOut, updateToken }}
     >
       {children}
     </AuthContext.Provider>
