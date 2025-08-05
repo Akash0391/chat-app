@@ -22,6 +22,7 @@ import { UserDataProps } from "@/types";
 import Button from "@/components/Button";
 import { useRouter } from "expo-router";
 import { updateProfile } from "@/socket/socketEvents";
+import { uploadFileTOCloudinary } from "@/services/imageService";
 
 const ProfileModal = () => {
   const { user, signOut, updateToken } = useAuth() 
@@ -91,7 +92,7 @@ const ProfileModal = () => {
      ] )
   }
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     let {name, avatar} = userData;
     if(!name.trim()) {
       Alert.alert("User", "Please enter your name")
@@ -102,7 +103,19 @@ const ProfileModal = () => {
       name,
       avatar
     }
-    setLoading(true)
+
+    if(avatar && avatar?.uri) {
+      setLoading(true)
+      const res = await uploadFileTOCloudinary(avatar, "profiles")
+      console.log("Result:", res)
+      if(res.success) {
+        data.avatar = res.data
+      } else {
+        Alert.alert("User", res.msg)
+        setLoading(false)
+        return
+      }
+    }
 
     updateProfile(data)
   }
