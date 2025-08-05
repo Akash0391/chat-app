@@ -1,7 +1,7 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { StyleSheet, TextInput, View } from 'react-native'
 import React, { useState } from 'react'
 import { InputProps } from '@/types'
-import { colors, radius, spacingX, spacingY } from '@/constants/theme'
+import { colors, radius, spacingX } from '@/constants/theme'
 import { verticalScale } from '@/utils/styling'
 
 const Input = (props: InputProps) => {
@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
         borderRadius: radius.full,
         borderCurve: 'continuous',
         paddingHorizontal: spacingX._15,
-        backgroundColor: colors.neutral100,
         gap: spacingX._10,
     },
     primaryBorder: {

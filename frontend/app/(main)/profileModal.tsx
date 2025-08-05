@@ -127,7 +127,7 @@ const ProfileModal = () => {
         <Header
           title={"Update Profile"}
           leftIcon={
-            Platform.OS === "android" && <BackButton color={colors.white} />
+            Platform.OS === "android" && <BackButton color={colors.black} />
           }
           style={{ marginVertical: spacingY._15 }}
         />
@@ -153,6 +153,7 @@ const ProfileModal = () => {
               containerStyle={{
                 borderColor: colors.neutral350,
                 paddingLeft: spacingX._20,
+                backgroundColor: colors.neutral200, 
               }}
               onChangeText={(value) => setUserData({...userData, email: value})}
               editable={false}
@@ -167,7 +168,6 @@ const ProfileModal = () => {
               containerStyle={{
                 borderColor: colors.neutral350,
                 paddingLeft: spacingX._20,
-                backgroundColor: colors.neutral300,
               }}
               onChangeText={(value) => setUserData({...userData, name: value})}
               /> 

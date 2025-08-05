@@ -10,7 +10,7 @@ const Header = ({ title = "", leftIcon, rightIcon, style }: HeaderProps) => {
       {leftIcon && <View style={styles.leftIcon}>{leftIcon}</View>}
       {
         title && (
-            <Typo size={22} color={colors.neutral200} fontWeight={'600'} style={styles.title}>
+            <Typo size={22} color={colors.black} fontWeight={'600'} style={styles.title}>
                 {title}
             </Typo>
         )

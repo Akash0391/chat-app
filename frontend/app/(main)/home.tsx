@@ -10,7 +10,7 @@ import { useRouter } from 'expo-router'
 // import { testSocketEvent } from '@/socket/socketEvents'  
 
 const Home = () => {
-  const { user: currentUser, signOut } = useAuth(); 
+  const { user: currentUser } = useAuth(); 
   const router = useRouter();
   
   //It is only for testing the socket connection
@@ -29,7 +29,7 @@ const Home = () => {
 
 
   return (
-    <ScreenWrapper showPattern={true} bgOpacity={0.5} >
+    <ScreenWrapper showPattern={true} bgOpacity={0.4} > 
       <View style={styles.container}> 
         <View style={styles.header}>
           <View style={{flex: 1}}>

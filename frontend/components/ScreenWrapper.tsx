@@ -12,26 +12,21 @@ const ScreenWrapper = ({
     bgOpacity = 1,
 }: ScreenWrapperProps) => {
 
-    let paddingTop = Platform.OS === "android" ? height * 0.04 : 0.06;
+    let paddingTop = Platform.OS === "ios" ? height * 0.06 : 40;
     let paddingBottom = 0;
 
     if(isModal) {
-        paddingTop = Platform.OS === "android" ? height * 0.02 : 0.04;  
-        paddingBottom = height * 0.04;
+        paddingTop = Platform.OS === "ios" ? height * 0.02 : 50;  
+        paddingBottom = height * 0.02;
     }
 
   return (
     <ImageBackground 
-        style={[
-        {
+        style={{
         flex: 1,
         backgroundColor: isModal ? colors.white : colors.neutral900,  
-    }, style]}
-    imageStyle={
-        showPattern ? {
-            opacity: bgOpacity,
-        } : {}
-    }
+    }}
+    imageStyle={{ opacity: showPattern ? bgOpacity : 0}}
     source={require("@/assets/images/bgPattern.png")}
     >
       <View style={{
@@ -39,7 +34,11 @@ const ScreenWrapper = ({
         paddingTop,
         paddingBottom,
       }}>
-        <StatusBar barStyle="light-content" backgroundColor={"transparent"} />
+        <StatusBar
+          translucent={false}
+          barStyle={isModal ? 'dark-content' : 'light-content'}
+          backgroundColor={isModal ? colors.white : colors.neutral900}
+        />
         {children}
       </View>
     </ImageBackground>
