@@ -183,6 +183,11 @@ const ProfileModal = () => {
         style={{backgroundColor: colors.rose,
           height: verticalScale(56),
           width: verticalScale(56),
+          shadowColor: colors.black,
+          shadowOffset: {width: 0, height: 2},
+          shadowOpacity: 0.1,
+          shadowRadius: 3.84,
+          elevation: 2,
         }}
          onPress={showLogOutAlert}>
           <Icons.SignOut
@@ -193,7 +198,12 @@ const ProfileModal = () => {
           )
         }
           
-          <Button style={{flex: 1}} onPress={onSubmit} loading={loading}>
+          <Button
+            style={{flex: 1, shadowColor: colors.black,
+            shadowOffset: {width: 0, height: 2},
+            shadowOpacity: 0.1,
+            shadowRadius: 3.84,
+            elevation: 2,}} onPress={onSubmit} loading={loading}>
             <Typo color={colors.black} fontWeight={'800'}>Update</Typo>
           </Button>
       </View>

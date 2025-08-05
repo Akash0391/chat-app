@@ -2,7 +2,7 @@ import { ActivityIndicator, ActivityIndicatorProps, StyleSheet, View } from 'rea
 import React from 'react'
 import { colors } from '@/constants/theme'  
 
-const Loding = ({
+const Loading = ({
     size = "large",
     color = colors.primary,
 }: ActivityIndicatorProps) => {
@@ -13,6 +13,6 @@ const Loding = ({
   )
 }
 
-export default Loding
+export default Loading  
 
 const styles = StyleSheet.create({})

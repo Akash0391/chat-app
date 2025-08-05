@@ -27,6 +27,11 @@ const styles = StyleSheet.create({
     avatar: {
         alignSelf: 'center',
         backgroundColor: colors.neutral200,
+        shadowColor: colors.black,
+        shadowOffset: {width: 0, height: 2},
+        shadowOpacity: 0.1,
+        shadowRadius: 3.84,
+        elevation: 2,
         height: verticalScale(47),
         width: verticalScale(47),
         borderRadius: radius.full,
