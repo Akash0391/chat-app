@@ -1,10 +1,10 @@
-import { View, TouchableOpacity, StyleSheet } from 'react-native'  
-import React from 'react'
-import { ButtonProps } from '@/types'
 import { colors, radius } from '@/constants/theme'
-import Typo from './Typo'
+import { ButtonProps } from '@/types'
 import { verticalScale } from '@/utils/styling'
-import Loading from './Loding'
+import React from 'react'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import Loading from './Loading'
+import Typo from './Typo'
 
 const Button = ({
     style,
